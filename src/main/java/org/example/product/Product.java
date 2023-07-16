@@ -10,6 +10,8 @@ public abstract class Product {
 
     abstract Product deepCopy();
 
-    abstract Double getPrice();
+    abstract int getPrice();
+
+    abstract Product decorateProduct();
 
 }

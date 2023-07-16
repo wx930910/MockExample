@@ -4,7 +4,7 @@ public class MockWrapDelegate  extends ProductWrapDelegate {
 
     @Override
     public void wrapProduct(Product product) {
-
+        product.decorateProduct();
     }
 
 }

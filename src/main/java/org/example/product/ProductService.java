@@ -27,7 +27,7 @@ public class ProductService {
         if (product instanceof Carriage) {
             return product.getPrice() + ((Carriage) product).getUnitDeliveryPrice() * deliveryDistance;
         }
-        return product.getPrice();
+        return (double) product.getPrice();
     }
 
     // Use class metadata
