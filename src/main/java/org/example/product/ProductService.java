@@ -2,18 +2,19 @@ package org.example.product;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class ProductService {
 
-    // Override JDK Equals()
-    public int compareProductName(Product product1, Product product2) throws Exception {
-        if (product1.equals(product2)) {
-            throw new Exception(String.format("Cannot compare name for the same product [%s]", product1));
-        }
-        return product1.getProductName().compareTo(product2.getProductName());
+    // Override JDK Hashcode()
+    public List<Product> sortProducts(List<Product> products) {
+        Collections.sort(products, Comparator.comparingInt(Object::hashCode));
+        return products;
     }
 
     // Override protected method
