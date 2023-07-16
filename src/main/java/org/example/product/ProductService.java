@@ -24,7 +24,10 @@ public class ProductService {
 
     // Inherit multiple classes
     public Double getProductPrice(Product product, Double deliveryDistance) {
-        return product.getPrice() + product.getUnitDeliveryPrice() * deliveryDistance;
+        if (product instanceof Carriage) {
+            return product.getPrice() + ((Carriage) product).getUnitDeliveryPrice() * deliveryDistance;
+        }
+        return product.getPrice();
     }
 
     // Use class metadata
