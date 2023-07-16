@@ -8,4 +8,6 @@ public abstract class Product implements Merchandise, Carriage {
 
     protected abstract Set<Tag> getProductTags();
 
+    abstract Product deepCopy();
+
 }

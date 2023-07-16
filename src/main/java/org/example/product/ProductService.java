@@ -2,6 +2,7 @@ package org.example.product;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -12,7 +13,7 @@ public class ProductService {
 
     // Override JDK Hashcode()
     public List<Product> sortProducts(List<Product> products) {
-        Collections.sort(products, Comparator.comparingInt(Object::hashCode));
+        Collections.sort(new ArrayList<>(products), Comparator.comparingInt(Object::hashCode));
         return products;
     }
 
@@ -32,6 +33,13 @@ public class ProductService {
         Class<ProductWrapDelegate> delegateClass = (Class<ProductWrapDelegate>) classLoader.loadClass(wrapDelegate);
         ProductWrapDelegate delegate = delegateClass.newInstance();
         delegate.wrapProduct(product);
+    }
+
+    // Self reference
+    public List<Product> copyProducts(List<Product> products, Tag productTag) {
+        final List<Product> copied = new ArrayList<>();
+        filterProducts(products, productTag).stream().forEach(p -> copied.add(p.deepCopy()));
+        return copied;
     }
 
 }
