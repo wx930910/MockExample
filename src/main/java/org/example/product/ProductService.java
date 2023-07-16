@@ -26,7 +26,7 @@ public class ProductService {
         return product.getPrice() + product.getUnitDeliveryPrice() * deliveryDistance;
     }
 
-    // Self reference
+    // Use class metadata
     public void wrapProduct(Product product, String wrapDelegate) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         ClassLoader classLoader = ProductWrapDelegate.class.getClassLoader();
         Class<ProductWrapDelegate> delegateClass = (Class<ProductWrapDelegate>) classLoader.loadClass(wrapDelegate);
